@@ -18,11 +18,9 @@ const TextoHeader = styled.h1`
 
 const Header = ({titulo}) => {
     return (
-        <header>
-            <ContenedorHeader>
-            <TextoHeader>{titulo}</TextoHeader>
-            </ContenedorHeader>
-        </header>
+        <ContenedorHeader>
+        <TextoHeader>{titulo}</TextoHeader>
+        </ContenedorHeader>
     );
 }
 

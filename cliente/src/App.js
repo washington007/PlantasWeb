@@ -12,6 +12,7 @@ import tokenAuth from './config/token';
 import RutaPrivada from './components/rutas/RutaPrivada';
 import CrearCita from './components/rutas/CrearCita';
 import CotizarPlanta from './components/rutas/CotizarPlanta';
+import PlanificadorGastos from './components/rutas/PlanificadorGastos';
 
 // Revisar si tenemos un token
 const token = localStorage.getItem('token');
@@ -34,6 +35,7 @@ function App() {
                     <RutaPrivada exact path="/proyectos" component={Proyectos} />
                     <Route exact path="/crear-cita" component={CrearCita} />
                     <Route exact path="/cotizar-planta" component={CotizarPlanta} />
+                    <Route exact path="/planificar-gastos" component={PlanificadorGastos} />
                 </Switch>
             </Router>
           </AuthState>

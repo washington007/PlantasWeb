@@ -53,8 +53,6 @@ const Login = (props) => {
         iniciarSesion({ email, password });
     }
 
-
-
     return ( 
         <div className="form-usuario">
             { alerta ? ( <div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div> )  : null }

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
-import {obtenerDiferenciaDay, calcularPlanta, obtenerOrigen, calcularInsumos, calcularExtra} from '../Cotizador/helper';
+import {obtenerDiferenciaYear, calcularPlanta, obtenerOrigen, calcularInsumos, calcularExtra} from '../Cotizador/helper';
 
 const Campo = styled.div`
     display: flex;
@@ -27,7 +27,7 @@ const InputRadio = styled.input`
 const Boton = styled.button`
     background-color: #00838F;
     font-size: 16px;
-    width: 100%auto;
+    width: auto;
     padding: 1rem;
     color: #fff;
     text-transform: uppercase;
@@ -51,12 +51,12 @@ const Error = styled.div`
     margin-bottom: 2rem;
 `;
 
-const Formulario = () =>{
+const Formulario = ({guardarResumen, guardarCargando}) =>{
 
     const [datos, guardarDatos] = useState({
         tipo: '', 
         origen: '', 
-        dia: '', 
+        year: '', 
         insumos: '', 
         extra: ''
     });
@@ -64,7 +64,7 @@ const Formulario = () =>{
     const [error, guardarError] = useState(false);
 
     //extraer los valores del state
-    const{tipo, origen, dia, insumos, extra} = datos
+    const{tipo, origen, year, insumos, extra} = datos
 
     //Leer los datos del formulario y colocarlos en el state
     const obtenerInformacion = e =>{
@@ -78,7 +78,7 @@ const Formulario = () =>{
     const cotizarSeguro = e => {
         e.preventDefault();
 
-        if(tipo.trim() === '' || origen.trim() === '' || dia.trim() === '' || insumos.trim() === '' || extra.trim() === ''){
+        if(tipo.trim() === '' || origen.trim() === '' || year.trim() === '' || insumos.trim() === '' || extra.trim() === ''){
             guardarError(true);
             return;
         }
@@ -87,24 +87,22 @@ const Formulario = () =>{
         //Una base de 20
         let resultado = 20;
 
-        //Obtener  la diferencia de dias
-        const diferencia = obtenerDiferenciaDay(dia);
-        //console.log(diferencia);
+        //Obtener la diferencia de años
+        const diferencia = obtenerDiferenciaYear(year);
 
-        //por cada dia hay que restar el 3%
-        resultado -= ((diferencia * 3) * resultado)/100;
-        //console.log(resultado);
+        //por cada año hay que restar el 3%
+        resultado -= ((diferencia * 3 ) * resultado) / 100;
 
-        //Ornamental 5%
+        //Ornamental 10%
         //Medicinal 15%
-        //Alimenticia 30%
+        //Alimenticia 20%
         resultado = calcularPlanta(tipo) * resultado;
+        console.log(resultado);
 
         //Basico aumenta 20%
         //Completo 50%
         const incrementoOrigen = obtenerOrigen(origen);
-        resultado = parseFloat(incrementoOrigen * resultado).toFixed(2);
-        console.log(resultado);
+        resultado = parseInt(incrementoOrigen * resultado).toFixed(2);
 
         //Fertilizantes 5%
         //Insecticidas 10%
@@ -118,7 +116,18 @@ const Formulario = () =>{
         //Macetas 20%
         resultado = calcularExtra(extra) * resultado;
 
-        //Total
+        guardarCargando(true);
+
+        setTimeout(()=> {
+            //Elimina el Spinner
+            guardarCargando(false);
+            
+            //pasa la informacion al componente principal
+            guardarResumen({
+                cotizacion: Number(resultado),
+                datos
+            });
+        }, 3000);
     }
 
     return(
@@ -134,9 +143,9 @@ const Formulario = () =>{
                     onChange={obtenerInformacion}
                 >
                     <option value="">-- Seleccione --</option>
-                    <option value="ornametal">Ornamental</option>
-                    <option value="medicinal">Medicinal</option>
                     <option value="alimenticias">Alimenticias</option>
+                    <option value="medicinal">Medicinal</option>
+                    <option value="ornametal">Ornamental</option>
                 </Select>
             </Campo>
 
@@ -160,20 +169,16 @@ const Formulario = () =>{
             </Campo>
 
             <Campo>
-                <Label>Dia</Label>
+                <Label>Año</Label>
                 <Select
-                    name="dia"
-                    value={dia}
+                    name="year"
+                    value={year}
                     onChange={obtenerInformacion}
                 >
                     <option value="">-- Seleccione --</option>
-                    <option value="7">7</option>
-                    <option value="6">6</option>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
                 </Select>
             </Campo>
 
@@ -210,6 +215,6 @@ const Formulario = () =>{
             <Boton type="submit">Cotizar</Boton>
         </form>
     );
-} 
+}
 
 export default Formulario; 

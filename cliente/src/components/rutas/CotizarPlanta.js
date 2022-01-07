@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from '../Cotizador/Header';
 import Formulario from '../Cotizador/Formulario';
+import Resumen from '../Cotizador/Resumen';
+import Resultado from '../Cotizador/Resultado';
+import Spinner from '../Cotizador/Spinner';
 
 import styled from '@emotion/styled';
 
@@ -15,14 +18,45 @@ const ContenedorFormulario = styled.div`
 `
 
 function CotizarPlanta(){
+    const [resumen, guardarResumen] = useState({
+        cotizacion: 0,
+        datos: {
+            tipo: '',
+            origen: '',
+            dia: '',
+            insumos: '',
+            extras: '',
+        }
+    });
+
+    const[cargando, guardarCargando] = useState(false);
+
+    //extraer datos
+    const {cotizacion, datos} = resumen;
+
     return(
         <Contenedor>
-            <Header 
+            <Header
                 titulo='Contizador de Plantas'
             />
 
             <ContenedorFormulario>
-                <Formulario/>
+                <Formulario
+                    guardarResumen={guardarResumen}
+                    guardarCargando={guardarCargando}
+                />
+
+                {cargando ? <Spinner/> : null}
+
+                <Resumen
+                    datos={datos}
+                />
+
+                {!cargando ?
+                    <Resultado
+                        cotizacion={cotizacion}
+                    /> : null
+                }
             </ContenedorFormulario>
         </Contenedor>
     );

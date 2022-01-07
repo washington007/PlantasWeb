@@ -66,7 +66,7 @@ const Formulario = ({crearCita}) => {
                     type="text"
                     name="planta"
                     className="u-full-width"
-                    placeholder="Aqui es un combo box"
+                    placeholder="Nombre de la Planta"
                     onChange={actualizarState}
                     value={planta}
                 />
@@ -116,8 +116,8 @@ const Formulario = ({crearCita}) => {
     );
 }
 
-Formulario.propTypes = {
+/*Formulario.propTypes = {
     crearCita: PropTypes.func.isRequired
-}
+}*/
 
 export default Formulario;

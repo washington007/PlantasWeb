@@ -22,6 +22,9 @@ app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/proyectos', require('./routes/proyectos'));
 app.use('/api/tareas', require('./routes/tareas'));
+app.use('/api/crear-cita', require('./routes/cita'));
+app.use('/api/cotizar-planta', require('./routes/cotizador'));
+app.use('/api/planificar-gastos', require('./routes/planificador'));
 
 // arrancar la app
 app.listen(port, '0.0.0.0', () => {

@@ -14,7 +14,6 @@ exports.crearUsuario = async (req, res) => {
     // extraer email y password
     const { email, password } = req.body;
 
-
     try {
         // Revisar que el usuario registrado sea unico
         let usuario = await Usuario.findOne({ email });

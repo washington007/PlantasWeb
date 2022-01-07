@@ -44,12 +44,14 @@ export default (state, action) => {
                 proyectos: state.proyectos.filter(proyecto => proyecto._id !== action.payload ),
                 proyecto: null
             }
+            //OJO QUITE DE LA LINEA 54 TOMAR EN CUENTA 
+            default:
+                return state;
         case PROYECTO_ERROR:
             return {
                 ...state,
                 mensaje: action.payload
             }
-        default:
-            return state;
+      
     }
 }

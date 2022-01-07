@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
-
 import proyectoContext from './proyectoContext';
 import proyectoReducer from './proyectoReducer';
+
 import { 
     FORMULARIO_PROYECTO, 
     OBTENER_PROYECTOS,
@@ -16,7 +16,6 @@ import clienteAxios from '../../config/axios';
 
 
 const ProyectoState = props => {
-
     const initialState = {
         proyectos : [],
         formulario : false,
@@ -73,7 +72,7 @@ const ProyectoState = props => {
                 msg: 'Hubo un error',
                 categoria: 'alerta-error'
             }
-            
+
             dispatch({
                 type: PROYECTO_ERROR,
                 payload: alerta
@@ -136,7 +135,6 @@ const ProyectoState = props => {
         >
             {props.children}
         </proyectoContext.Provider>
-        
     )
 }
 

@@ -18,9 +18,14 @@ const Sidebar = () => {
                     </Link>
                 </button>
                 <br/>
-                <button type="button" className="btn  btn-block btn-primario">
+                <button type="button" className="btn btn-block btn-primario">
                     <Link to={'/cotizar-planta'}>
                         Cotizar Planta
+                    </Link>
+                </button>
+                <button type="button" className="btn btn-block btn-primario">
+                    <Link to={'/planificar-gastos'}>
+                        Planificador de Gastos
                     </Link>
                 </button>
             </div>

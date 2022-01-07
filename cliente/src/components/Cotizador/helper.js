@@ -1,6 +1,6 @@
 //obtiene la diferencia de años
-export function obtenerDiferenciaDay(day){
-    return new Date().getDay() - day;
+export function obtenerDiferenciaYear(year){
+    return new Date().getFullYear() - year;
 }
 
 //calcula el total a pagar segun la planta
@@ -8,14 +8,17 @@ export function calcularPlanta(tipo){
     let incremento;
 
     switch(tipo){
-        case 'ornamental':
-            incremento = 1.05;
-            break;
-        case 'medicinal':
-            incremento = 1.15;
-            break;
         case 'alimenticias':
             incremento = 1.30;
+            break;
+        case 'medicinal':
+            incremento = 1.25;
+            break;
+        case 'ornamental':
+            incremento = 1.20;
+            break;
+        case 'Bonsai':
+            incremento = 1.15;
             break;
         default:
             break;
@@ -23,7 +26,7 @@ export function calcularPlanta(tipo){
     return incremento;
 }
 
-//Calcular el tipo de seguro
+//Calcular el tipo de origen
 export function obtenerOrigen(origen){
     return (origen === 'vivero')? 1.20 : 1.50;
 }
@@ -72,4 +75,9 @@ export function calcularExtra(extra){
             break;
     }
     return incremento;
+}
+
+//Muestra la primera letra mayuscula
+export function primerMayuscula(texto){
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
 }

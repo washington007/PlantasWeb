@@ -49,7 +49,7 @@ const ListadoTareas = () => {
                 }
             </ul>
 
-            <button     
+            <button
                 type="button"
                 className="btn btn-eliminar"
                 onClick={onClickEliminar}

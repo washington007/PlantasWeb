@@ -51,7 +51,7 @@ function CrearCita(){
                         <h2>{titulo}</h2>
                         {citas.map(cita => (
                             <Cita
-                                key={cita.id}
+                                key={cita._id}
                                 cita={cita}
                                 eliminarCita={eliminarCita}
                             />

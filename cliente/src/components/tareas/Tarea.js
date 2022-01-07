@@ -12,7 +12,6 @@ const Tarea = ({tarea}) => {
     const tareasContext = useContext(tareaContext);
     const { eliminarTarea, obtenerTareas, actualizarTarea, guardarTareaActual } = tareasContext;
 
-
     // Extraer el proyecto
     const [proyectoActual] = proyecto;
  

@@ -15,7 +15,7 @@ function CrearCita(){
     //Use Effect para realizar ciertas operaciones cuando el state cambia
     useEffect(() => {
         let citasIniciales = JSON.parse(localStorage.getItem('citas'));
-        
+
         if(citasIniciales){
             localStorage.setItem('citas', JSON.stringify(citas))
         }else{
@@ -46,6 +46,7 @@ function CrearCita(){
                         <Formulario
                             crearCita={crearCita}
                         />
+
                     </div>
                     <div className="one-half column">
                         <h2>{titulo}</h2>
@@ -53,6 +54,7 @@ function CrearCita(){
                             <Cita
                                 key={cita._id}
                                 cita={cita}
+
                                 eliminarCita={eliminarCita}
                             />
                         ))}

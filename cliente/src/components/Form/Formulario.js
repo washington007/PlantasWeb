@@ -42,7 +42,7 @@ const Formulario = ({crearCita}) => {
 
         //Crear la cita
         crearCita(cita);
-
+        
         //Reiniciar el form
         actualizarCita({
             planta: '',
@@ -115,9 +115,5 @@ const Formulario = ({crearCita}) => {
         </Fragment>
     );
 }
-
-/*Formulario.propTypes = {
-    crearCita: PropTypes.func.isRequired
-}*/
 
 export default Formulario;
